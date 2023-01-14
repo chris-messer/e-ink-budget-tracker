@@ -1,7 +1,9 @@
 import pandas as pd
 import mintapi as mintapi
 import datetime
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def get_last_monday():
     d = datetime.date.today()
@@ -74,8 +76,8 @@ class Bank:
         return spend
 
 if __name__ == '__main__':
-    username = 'username'
-    password = 'password'
+    username = os.getenv('username')
+    password = os.getenv('password')
     bank = Bank(username,password)
     # chase_balance = bank.get_current_balance('75417769_13615882')
     spend_since_monday = bank.spend_since_monday('75417769_13615882')
