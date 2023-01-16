@@ -1,6 +1,6 @@
 from gpiozero import Button
 from services.print_budget import refresh_budget
-from utils.print_to_eink import print_text
+from utils.print_to_eink import print_text, clear_screen
 from utils.build_images import plain_text
 from PIL import Image
 from dotenv import load_dotenv
@@ -27,11 +27,11 @@ def key3():
     print_text(plain_text("Key 3 Pressed"))
 
 def key4():
-    print_text(plain_text("Key 4 Pressed"))
+    clear_screen()
 
-
-btn1.when_pressed = key1
-btn2.when_pressed = key2
-btn3.when_pressed = key3
-btn4.when_pressed = key4
+def button_listen():
+    btn1.when_pressed = key1
+    btn2.when_pressed = key2
+    btn3.when_pressed = key3
+    btn4.when_pressed = key4
 

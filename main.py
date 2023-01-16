@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import logging
 import os
 import threading
+import buttons_dir
 
 logging.basicConfig(level=logging.INFO)
 load_dotenv()
@@ -24,7 +25,10 @@ while True:
                               args=(monthly_budget, _debug=False))
     screen_refresh=threading.Thread(target=refresh_screen_thread)
 
+    button_listen=threading.Thread(target=buttons_dir.button_listen)
+
     api_pull.start()
+    button_listen.start()
     time.sleep(180)
     screen_refresh.start()
 

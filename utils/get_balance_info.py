@@ -50,7 +50,7 @@ class Bank:
             mfa_input_callback=None,
             mfa_token=None,
             intuit_account=None,
-            headless=False,
+            headless=True,
             session_path=None,
             imap_account=None,
             imap_password=None,
