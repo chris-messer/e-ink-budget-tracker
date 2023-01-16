@@ -17,7 +17,7 @@ def refresh_budget(monthly_budget, _debug):
     password = os.getenv('password')
 
     logging.info("Connecting to Mint")
-    #print_text(plain_text('Refreshing Budget...'))
+    print_text(plain_text('Refreshing Budget...'))
 
     if _debug == True:
         budget_dict = pickle.load(open("./budget.p", "rb"))
@@ -29,6 +29,16 @@ def refresh_budget(monthly_budget, _debug):
         pickle.dump(budget_dict, open("./budget.p", "wb"))
 
 
+    logging.info("Building Image")
+
+    budget_text = build_budget_text(budget_dict)
+    img = plain_text(budget_text)
+
+    logging.info("Printing Image")
+    print_text(img)
+
+def refresh_screen():
+    budget_dict = pickle.load(open("./budget.p", "rb"))
     logging.info("Building Image")
 
     budget_text = build_budget_text(budget_dict)

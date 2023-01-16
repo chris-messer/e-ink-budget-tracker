@@ -15,7 +15,7 @@ def plain_text(_text):
 
     d.multiline_text((10, 10), _text, font=fnt, fill=(0, 0, 0), spacing=6)
 
-    out.show()
+    #out.show()
     return out
 
 def build_budget_text(budget_dict):

@@ -39,3 +39,22 @@ def print_text(image):
         logging.info("ctrl + c:")
         epaper.epaper('epd2in7').epdconfig.module_exit()
         exit()
+
+def clear_screen():
+    try:
+        logging.info("Printing Text")
+        epd = epaper.epaper('epd2in7').EPD()
+
+        '''2Gray(Black and white) display'''
+        logging.info("init and Clear")
+        epd.init()
+        epd.Clear(0xFF)
+    except IOError as e:
+        logging.info(e)
+
+    except KeyboardInterrupt:
+        logging.info("ctrl + c:")
+        epaper.epaper('epd2in7').epdconfig.module_exit()
+        exit()
+
+d
