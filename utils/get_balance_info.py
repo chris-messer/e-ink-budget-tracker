@@ -39,6 +39,7 @@ class Bank:
         self.password = password
         self.mint_auth = self.mint_authenticate()
         self.accounts = self.get_accounts()
+        self.tr_df = None
 
     def mint_authenticate(self):
         # Opens Mint in new browser window through Selenium webdriver.
@@ -49,7 +50,7 @@ class Bank:
             mfa_input_callback=None,
             mfa_token=None,
             intuit_account=None,
-            headless=True,
+            headless=False,
             session_path=None,
             imap_account=None,
             imap_password=None,
@@ -59,10 +60,11 @@ class Bank:
             wait_for_sync_timeout=500,
             use_chromedriver_on_path=chrome_on_path
         )
-        mint_auth.initiate_account_refresh()
+
         return mint_auth
 
     def get_accounts(self):
+        self.mint_auth.initiate_account_refresh()
         account_data = self.mint_auth.get_account_data()
         ad_df = pd.DataFrame(account_data)
         return ad_df
@@ -75,6 +77,7 @@ class Bank:
     def get_account_transactions(self, account_id):
         tr_df = pd.DataFrame(
             self.mint_auth.get_transaction_data(remove_pending=False))
+        self.tr_df = tr_df
         account_transactions = tr_df.loc[tr_df['accountId'] == account_id]
         return account_transactions
 
@@ -103,6 +106,7 @@ class Bank:
 
 
 
+
 def weekly_budget_remaining(bank, account_id, monthly_budget):
     budget_dict = {}
     budget_dict['current_balance'] = bank.get_current_balance(account_id)
@@ -124,6 +128,11 @@ def weekly_budget_remaining(bank, account_id, monthly_budget):
         budget_dict['monthly_budget_start_of_week'] / \
         days_left_in_month_from_last_mon() * 7
 
+    transactions = bank.tr_df.loc[bank.tr_df['accountId'] == account_id]
+    budget_dict['last_purchase'] = {
+        'Vendor':transactions.iloc[0]['description'],
+        'Amount':round(transactions.iloc[0]['amount'],2) * -1
+            }
     # todo add last puschase
     # todo add predicted next week budget
 

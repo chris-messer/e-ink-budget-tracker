@@ -17,10 +17,10 @@ def refresh_budget(monthly_budget, _debug):
     password = os.getenv('password')
 
     logging.info("Connecting to Mint")
-    print_text(plain_text('Refreshing Budget...'))
+    #print_text(plain_text('Refreshing Budget...'))
 
     if _debug == True:
-        budget_dict = pickle.load(open("../budget.p", "rb"))
+        budget_dict = pickle.load(open("./budget.p", "rb"))
     else:
         bank = Bank(username, password)
         budget_dict = weekly_budget_remaining(bank,

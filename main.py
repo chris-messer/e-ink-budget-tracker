@@ -7,9 +7,9 @@ import os
 logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
-monthly_budget = os.getenv('monthly_budget')
+monthly_budget = int(os.getenv('monthly_budget'))
 
 while True:
-    refresh_budget(monthly_budget, _debug=True)
+    refresh_budget(monthly_budget, _debug=False)
     time.sleep(10000)
     print('pause')

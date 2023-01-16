@@ -15,7 +15,7 @@ btn1 = Button(5)
 btn2 = Button(6)
 btn3 = Button(13)
 btn4 = Button(19)
-monthly_budget = os.getenv('monthly_budget')
+monthly_budget = int(os.getenv('monthly_budget'))
 
 def key1():
     refresh_budget(monthly_budget, _debug=False)
