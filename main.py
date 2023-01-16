@@ -22,7 +22,7 @@ def refresh_screen_thread():
 while True:
 
     api_pull=threading.Thread(target=refresh_budget,
-                              args=(monthly_budget, _debug=False))
+                              args=(monthly_budget, False))
     screen_refresh=threading.Thread(target=refresh_screen_thread)
 
     button_listen=threading.Thread(target=buttons_dir.button_listen)
