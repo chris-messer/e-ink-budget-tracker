@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 import calendar
 
 load_dotenv()
-
-
+chrome_on_path = os.getenv('chrome_on_path')
 
 def get_last_monday():
     d = datetime.date.today()
@@ -55,7 +54,7 @@ class Bank:
             imap_folder='INBOX',
             wait_for_sync=False,
             wait_for_sync_timeout=500,
-            use_chromedriver_on_path=False
+            use_chromedriver_on_path=chrome_on_path
         )
         return mint_auth
 

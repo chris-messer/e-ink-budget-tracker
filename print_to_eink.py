@@ -14,7 +14,7 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 import traceback
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 def print_text(image):
     try:
@@ -37,5 +37,5 @@ def print_text(image):
 
     except KeyboardInterrupt:
         logging.info("ctrl + c:")
-        epd2in7.epdconfig.module_exit()
+        epaper.epaper('epd2in7').epdconfig.module_exit()
         exit()
