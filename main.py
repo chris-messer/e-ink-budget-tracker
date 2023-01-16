@@ -22,6 +22,6 @@ while True:
 
     # budget_dict = pickle.load(open("budget.p", "rb"))
     img = build_image(budget_dict)
-    print
+    print_text(img)
 
     print('pause')
