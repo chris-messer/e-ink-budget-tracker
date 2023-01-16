@@ -5,7 +5,7 @@ from utils.get_balance_info import Bank, weekly_budget_remaining
 from utils.build_images import plain_text, build_budget_text
 import pickle
 try:
-    from print_to_eink import print_text
+    from utils.print_to_eink import print_text
 except:
     pass
 
@@ -15,7 +15,9 @@ load_dotenv()
 def refresh_budget(monthly_budget, _debug):
     username = os.getenv('username')
     password = os.getenv('password')
+
     logging.info("Connecting to Mint")
+    print_text(plain_text('Refreshing Budget...'))
 
     if _debug == True:
         budget_dict = pickle.load(open("../budget.p", "rb"))
@@ -24,7 +26,7 @@ def refresh_budget(monthly_budget, _debug):
         budget_dict = weekly_budget_remaining(bank,
                                               '75417769_13615882',
                                               monthly_budget)
-        pickle.dump(budget_dict, open("../budget.p", "wb"))
+        pickle.dump(budget_dict, open("./budget.p", "wb"))
 
 
     logging.info("Building Image")

@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 import logging
 import os
-from get_balance_info import Bank, weekly_budget_remaining
+
 
 logging.basicConfig(level=logging.INFO)
 load_dotenv()
