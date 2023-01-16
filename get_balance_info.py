@@ -56,6 +56,7 @@ class Bank:
             wait_for_sync_timeout=500,
             use_chromedriver_on_path=chrome_on_path
         )
+        mint_auth.initiate_account_refresh()
         return mint_auth
 
     def get_accounts(self):

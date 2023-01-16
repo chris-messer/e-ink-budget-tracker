@@ -26,7 +26,7 @@ def print_text(image):
         epd.init()
         epd.Clear(0xFF)
 
-        epd.display(epd.getbuffer(Himage))
+        epd.display(epd.getbuffer(image))
         time.sleep(2)
 
         logging.info("Goto Sleep...")

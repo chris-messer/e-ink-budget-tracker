@@ -2,10 +2,16 @@ import os
 import dotenv
 from get_balance_info import Bank, weekly_budget_remaining
 from dotenv import load_dotenv
-from _display import build_image
-from print_to_eink import print_text
+from _display import plain_text, build_budget_text
 import pickle
 import logging
+import time
+
+try:
+    from print_to_eink import print_text
+except:
+    pass
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -16,19 +22,26 @@ monthly_budget = 5000
 
 load_dotenv()
 
-while True:
+def refresh_budget():
     logging.info("Connecting to Mint")
+    print_text(plain_text('Refreshing Balance...'))
     bank = Bank(username, password)
     budget_dict = weekly_budget_remaining(bank,
                                           '75417769_13615882',
                                           monthly_budget)
-    pickle.dump(budget_dict, open("budget.p","wb"))
+    pickle.dump(budget_dict, open("budget.p", "wb"))
 
     # budget_dict = pickle.load(open("budget.p", "rb"))
     logging.info("Building Image")
-    img = build_image(budget_dict)
+
+    budget_text = build_budget_text(budget_dict)
+    img = plain_text(budget_text)
 
     logging.info("Printing Image")
     print_text(img)
 
+
+while True:
+    refresh_budget()
+    time.sleep(10000)
     print('pause')
