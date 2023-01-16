@@ -1,5 +1,10 @@
 from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
+import logging
+import os
+from get_balance_info import Bank, weekly_budget_remaining
+
+logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 
@@ -10,7 +15,7 @@ def plain_text(_text):
 
     d.multiline_text((10, 10), _text, font=fnt, fill=(0, 0, 0))
 
-    out.show()
+    # out.show()
     return out
 
 def build_budget_text(budget_dict):

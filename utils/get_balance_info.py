@@ -4,6 +4,9 @@ import datetime
 import os
 from dotenv import load_dotenv
 import calendar
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 chrome_on_path = os.getenv('chrome_on_path')
@@ -94,6 +97,10 @@ class Bank:
             transactions['date'] >= last_monday]
         spend = monday_transactions['amount'].sum()
         return spend
+
+
+
+
 
 
 def weekly_budget_remaining(bank, account_id, monthly_budget):

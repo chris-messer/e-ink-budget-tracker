@@ -1,8 +1,7 @@
 from gpiozero import Button
-from main import refresh_budget
-from PIL import Image, ImageDraw, ImageFont
-from print_to_eink import print_text
-from print_to_eink import print_text
+from services.print_budget import refresh_budget
+from utils.print_to_eink import print_text
+from PIL import Image
 
 btn1 = Button(5)
 btn2 = Button(6)
