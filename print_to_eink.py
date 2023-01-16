@@ -9,7 +9,7 @@ if os.path.exists(libdir):
     sys.path.append(libdir)
 
 import logging
-from waveshare_epd import epd2in7
+import epaper
 import time
 from PIL import Image, ImageDraw, ImageFont
 import traceback
@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 def print_text(image):
     try:
         logging.info("Printing Text")
-        epd = epd2in7.EPD()
+        epd = epaper.epaper('epd2in7').EPD()
 
         '''2Gray(Black and white) display'''
         logging.info("init and Clear")
