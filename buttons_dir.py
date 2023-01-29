@@ -1,5 +1,5 @@
 from gpiozero import Button
-from services.print_budget import refresh_budget
+from services.print_budget import refresh_budget, refresh_screen
 from utils.print_to_eink import print_text, clear_screen
 from utils.build_images import plain_text
 from PIL import Image
@@ -24,7 +24,7 @@ def key2():
     print_text(Image.open('images/piggy.bmp'))
 
 def key3():
-    print_text(plain_text("Key 3 Pressed"))
+    refresh_screen()
 
 def key4():
     clear_screen()

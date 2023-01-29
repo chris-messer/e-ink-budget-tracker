@@ -57,4 +57,3 @@ def clear_screen():
         epaper.epaper('epd2in7').epdconfig.module_exit()
         exit()
 
-d
