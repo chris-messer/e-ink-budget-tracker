@@ -50,7 +50,7 @@ class Bank:
             mfa_input_callback=None,
             mfa_token=None,
             intuit_account=None,
-            headless=True,
+            headless=False,
             session_path=None,
             imap_account=None,
             imap_password=None,
@@ -97,7 +97,7 @@ class Bank:
         last_monday = get_last_monday()
         transactions = self.get_account_transactions(account_id)
         monday_transactions = transactions.loc[
-            transactions['date'] >= last_monday]
+            (transactions['date'] >= last_monday) & (transactions['isExpense'] == True )]
         spend = monday_transactions['amount'].sum()
         return spend
 
@@ -143,11 +143,11 @@ def weekly_budget_remaining(bank, account_id, monthly_budget):
     return budget_dict
 
 if __name__ == '__main__':
-    username = os.getenv('username')
+    username = os.getenv('username1')
     password = os.getenv('password')
     bank = Bank(username, password)
     # chase_balance = bank.get_current_balance('75417769_13615882')
-    monthly_budget = 5000
+    monthly_budget = int(os.getenv('monthly_budget'))
     weekly_budget_remaining(bank, '75417769_13615882', monthly_budget)
     spend_since_monday = bank.spend_since_monday('75417769_13615882')
     print('asd')
