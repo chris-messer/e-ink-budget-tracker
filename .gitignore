@@ -1,2 +1,8 @@
 .env
 /venv/
+chase_transactions.csv
+chromedriver
+chromedriver.exe
+LICENSE.chromedriver
+utils/chromedriver.exe
+utils/LICENSE.chromedriver
